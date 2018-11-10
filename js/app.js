@@ -1,22 +1,48 @@
-const Title = props => <h1 className="tc">{props.title}</h1>;
-const TopBanner = props => (
-  <h1 className="tc f1 yellow pa3">
-    {props.firstName} {props.lastName}
-  </h1>
+const Highlight = props => (
+  <span className={`relative highlight highlight-${props.color}`}>
+    <span className="relative z-2">{props.children}</span>
+  </span>
+);
+
+const Intro = () => (
+  <div className="m-auto-ns f4 f3-m f2-1 tc w-80-l normal">
+    <div className="mb3 mb4-ns">
+      <Highlight color="aqua">Lost in Tokyo</Highlight> is a directory of fun
+      places to see, play in and <Highlight color="yellow">explore</Highlight>,
+      in <Highlight color="blue">Tokyo</Highlight>, Japan.{" "}
+    </div>
+    <div>
+      From <Highlight color="blue">museums</Highlight> and{" "}
+      <Highlight color="blue">galleries</Highlight>, to{" "}
+      <Highlight color="pink">robot restaurants</Highlight> and{" "}
+      <Highlight color="pink">kitten cafes</Highlight>. Tokyo is the gift that
+      keeps on giving. <Highlight color="yellow">Dattebayo!</Highlight>
+    </div>
+  </div>
+);
+
+const Nav = () => (
+  <nav className="pt3 pt4-ns mb4 mb0-ns">
+    <ul className="list flex flex-wrap flex-nowrap-ns justify-between items-center pa0 ma0">
+      {menu.map(item => (
+        <li className={`mh2-ns f6 f4-l tc ${item.className}`}>
+          <a className="white no-underline" href={item.href}>
+            {item.children}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
 );
 
 const App = () => (
   <div>
-    <Title title="Welcome to my website!" />
-    <TopBanner firstName="Adam" lastName="Parsons" />
+    <Nav />
+    <div className="min-vh-100 ph4 flex flex-column">
+      <Intro />
+    </div>
+    <div className="flex flex-wrap container" /> /* attactions list component */
   </div>
 );
 
-const App = () => (
-  <React.Fragment>
-    <Title title="Welcome to my website!" />
-    <TopBanner firstName="Adam" lastName="Parsons" />
-  </React.Fragment>
-);
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
